@@ -163,6 +163,8 @@ export default function App() {
                   <Info size={32} className="text-slate-500 mb-4" />
                   <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Enter metrics to calculate</p>
                 </div>
+      </div>
+      
               )}
             </AnimatePresence>
             <div className="ad-slot w-full aspect-[4/5] rounded-3xl border border-slate-800 bg-slate-900/50 flex items-center justify-center text-[10px] text-slate-700 uppercase font-bold tracking-widest">
