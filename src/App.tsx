@@ -34,7 +34,6 @@ export default function App() {
   const results = useMemo(() => {
     if (!followers || !views) return null;
     
-    // Логика 2026: Базовая цена за просмотр (CPV)
     let cpvBase = 0.03; 
     const categoryMultipliers = { 
       Lifestyle: 1, 
@@ -79,7 +78,6 @@ export default function App() {
     <div className="min-h-screen selection:bg-neon-green/30 px-4 py-8 md:py-16">
       <div className="max-w-4xl mx-auto space-y-12">
         
-        {/* 1. ВЕРХНИЙ БАННЕР - LEADERBOARD */}
         <header className="flex flex-col md:flex-row justify-between items-baseline gap-8">
           <div className="flex flex-col">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -111,7 +109,6 @@ export default function App() {
                   <input type="number" value={followers} onChange={(e) => setFollowers(e.target.value === '' ? '' : Number(e.target.value))} className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-4 text-2xl mono focus:border-accent-color outline-none transition-all" />
                 </div>
 
-                {/* 2. РЕКЛАМА ВНУТРИ КОНТЕНТА (NATIVE) */}
                 <div className="ad-slot w-full h-24 rounded-xl border border-dashed border-slate-800 flex items-center justify-center text-[10px] text-slate-700 uppercase font-bold tracking-widest">
                   In-Feed Native Ad
                 </div>
@@ -151,7 +148,6 @@ export default function App() {
               </div>
             </motion.div>
 
-            {/* 3. НИЖНИЙ БАННЕР ПОД ОСНОВНЫМ БЛОКОМ */}
             <div className="ad-slot w-full h-32 rounded-3xl border border-slate-800 bg-slate-900/30 flex items-center justify-center text-[10px] text-slate-700 uppercase font-bold tracking-widest">
               Horizontal Content Ad
             </div>
@@ -170,4 +166,33 @@ export default function App() {
                       <div className="text-5xl font-black tracking-tighter mono">
                         {results.cSymbol}{results.mid.toFixed(0)}
                       </div>
-                      <div className="text-[10px] uppercase tracking-wid
+                      <div className="text-[10px] uppercase tracking-widest font-bold text-slate-500">
+                        Market Range: <span className="text-white">{results.cSymbol}{results.low.toFixed(0)} - {results.cSymbol}{results.high.toFixed(0)}</span>
+                      </div>
+                    </div>
+                    <button onClick={handleCopy} className="w-full bg-accent-color hover:bg-amber-300 text-slate-950 font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors uppercase text-sm tracking-widest">
+                      {copied ? <Check size={18} /> : <Copy size={18} />} {copied ? 'Copied' : 'Copy Quote'}
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl h-64 flex flex-col items-center justify-center text-center opacity-50">
+                  <Info size={32} className="text-slate-500 mb-4" />
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Enter metrics to calculate</p>
+                </div>
+              )}
+            </AnimatePresence>
+
+            <div className="ad-slot w-full aspect-[4/5] rounded-3xl border border-slate-800 bg-slate-900/50 flex items-center justify-center text-[10px] text-slate-700 uppercase font-bold tracking-widest">
+              Vertical Sidebar Ad
+            </div>
+          </div>
+        </main>
+
+        <footer className="text-center pt-8 border-t border-white/5 opacity-40">
+          <p className="text-[10px] uppercase tracking-widest font-bold">© 2026 RATECheck Professional Analytics</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
